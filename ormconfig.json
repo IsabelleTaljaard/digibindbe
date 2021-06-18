@@ -1,0 +1,18 @@
+{
+  "type": "mssql",
+  "host": "postsql.mandela.ac.za",
+  "port": 1433,
+  "username": "digibind_user",
+  "password": "cptVsd8xd2MEVYGC",
+  "database": "digibind",
+  "entities": [
+     "../src/**/entities/*.entity.{ts,.js}",
+     "../dist/**/entities/*.entity.{ts,.js}"
+  ],
+  "options": {
+    "encrypt": true
+  },
+  "extra":{
+    "trustServerCertificate": true
+  }
+}
