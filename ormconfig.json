@@ -6,8 +6,8 @@
   "password": "cptVsd8xd2MEVYGC",
   "database": "digibind",
   "entities": [
-     "../src/**/entities/*.entity.{ts,.js}",
-     "../dist/**/entities/*.entity.{ts,.js}"
+     "../src/**/entities/*.entity.{ts}",
+     "../dist/**/entities/*.entity.{ts}"
   ],
   "options": {
     "encrypt": true
@@ -15,4 +15,5 @@
   "extra":{
     "trustServerCertificate": true
   }
+
 }
