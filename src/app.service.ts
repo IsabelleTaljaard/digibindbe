@@ -17,5 +17,4 @@ export class AppService {
     @InjectRepository(Textbook) private textbookRepo: Repository<Textbook>,
     @InjectRepository(User) private userRepo: Repository<User>,
   ) {}
-
 }

@@ -10,7 +10,11 @@ export class Resource {
   @Column()
   resourceType: string;
 
-  @ManyToMany(() => Chapter, (chapter) => chapter.resources)
+  // @ManyToMany((type) => Resource)
+  // @JoinColumn()
+  // resources: Resource[];
+
+  @ManyToMany((type) => Chapter)
   chapters: Chapter[];
 
   //resourceContent: string/image/video?

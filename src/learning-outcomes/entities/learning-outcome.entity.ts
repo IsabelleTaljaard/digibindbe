@@ -14,7 +14,12 @@ export class LearningOutcome {
   @Column()
   learnOutItem: string;
 
-  @ManyToOne(() => Textbook, (textbook) => textbook.learningOutcomes, {
+  // @ManyToOne((type) => Textbook, {
+  //   onDelete: 'SET NULL',
+  // })
+  // textbook: Textbook;
+
+  @ManyToOne((type) => Textbook, {
     onDelete: 'SET NULL',
   })
   textbook: Textbook;

@@ -16,8 +16,7 @@ export class User {
   userEmail: string;
 
   //@JoinTable() -> a user can own textbooks
-  @ManyToMany(() => Textbook, (textbook) => textbook.users)
-  @JoinTable()
+  @ManyToMany(() => Textbook)
   textbooks: Textbook[];
 
   /*@ManyToMany((type) => Textbook, (textbook) => textbook.users)

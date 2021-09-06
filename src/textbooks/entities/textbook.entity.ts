@@ -23,15 +23,15 @@ export class Textbook {
   txtbPublishedStatus: string;
 
   @OneToMany(
-    () => LearningOutcome,
+    (type) => LearningOutcome,
     (learningOutcome) => learningOutcome.textbook,
   )
   learningOutcomes: LearningOutcome[];
 
-  @OneToMany(() => Chapter, (chapter) => chapter.textbook)
+  @OneToMany((type) => Chapter, (chapter) => chapter.textbook)
   chapters: Chapter[];
 
-  @ManyToMany(() => User, (user) => user.textbooks)
+  @ManyToMany((type) => User)
   users: User[];
 
   // @ManyToMany((type) => User, (user) => user.textbooks)
