@@ -14,12 +14,15 @@ export class Chapter {
   @PrimaryGeneratedColumn()
   chapCode: number;
   @Column()
-  chapIndexNumber;
+  chapIndexNumber: number;
   @Column()
   chapTitle: string;
+  @Column()
+  chaptComments: string;
 
   @ManyToOne((type) => Textbook, {
     onDelete: 'SET NULL',
+    nullable: true,
   })
   textbook: Textbook;
 

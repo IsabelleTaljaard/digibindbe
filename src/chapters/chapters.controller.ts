@@ -8,16 +8,15 @@ import {
   Delete,
 } from '@nestjs/common';
 import { ChaptersService } from './chapters.service';
-import { CreateChapterDto } from './dto/create-chapter.dto';
-import { UpdateChapterDto } from './dto/update-chapter.dto';
+import { Chapter } from './entities/chapter.entity';
 
 @Controller('chapters')
 export class ChaptersController {
   constructor(private readonly chaptersService: ChaptersService) {}
 
-  @Post()
-  create(@Body() createChapterDto: CreateChapterDto) {
-    return this.chaptersService.create(createChapterDto);
+  @Post('create')
+  create(@Body() chapter: Chapter): Promise<Chapter> {
+    return this.chaptersService.create(chapter);
   }
 
   @Get()
@@ -26,13 +25,13 @@ export class ChaptersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.chaptersService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.chaptersService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateChapterDto: UpdateChapterDto) {
-    return this.chaptersService.update(+id, updateChapterDto);
+  async update(@Param('id') id: number, @Body() chapter: Chapter) {
+    return await this.chaptersService.update(chapter);
   }
 
   @Delete(':id')

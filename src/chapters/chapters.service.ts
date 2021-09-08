@@ -1,26 +1,55 @@
 import { Injectable } from '@nestjs/common';
-import { CreateChapterDto } from './dto/create-chapter.dto';
-import { UpdateChapterDto } from './dto/update-chapter.dto';
+import { Chapter } from './entities/chapter.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ChaptersService {
-  create(createChapterDto: CreateChapterDto) {
-    return 'This action adds a new chapter';
+  constructor(
+    @InjectRepository(Chapter) private chapterRepository: Repository<Chapter>,
+  ) {}
+
+  /**
+   * INSERT new chapter into DB
+   * @param chapter new chapter
+   */
+  create(chapter: Chapter): Promise<Chapter> {
+    return this.chapterRepository.save(chapter);
   }
 
-  findAll() {
-    return `This action returns all chapters`;
+  /**
+   * SELECT * from chapter
+   */
+  findAll(): Promise<Chapter[]> {
+    return this.chapterRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} chapter`;
+  /**
+   * SELECT * from chapter WHERE chapCode is chapCode
+   * @param chapCode to lookup
+   */
+  async findOne(chapCode: number): Promise<Chapter> {
+    try {
+      const chapter = await this.chapterRepository.findOneOrFail(chapCode);
+      return chapter;
+    } catch (err) {
+      throw err;
+    }
   }
 
-  update(id: number, updateChapterDto: UpdateChapterDto) {
-    return `This action updates a #${id} chapter`;
+  /**
+   * Updates chapter
+   * @param chapter updates version of the chapter
+   */
+  async update(chapter: Chapter): Promise<Chapter> {
+    return this.chapterRepository.save(chapter);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} chapter`;
+  /**
+   * Removes a chapter
+   * @param chapCode chapter that should be deleted
+   */
+  async remove(chapCode: number) {
+    return await this.chapterRepository.delete({ chapCode: chapCode });
   }
 }
