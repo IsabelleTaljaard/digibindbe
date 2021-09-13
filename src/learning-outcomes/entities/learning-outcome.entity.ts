@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -14,20 +15,12 @@ export class LearningOutcome {
   @Column()
   learnOutItem: string;
 
-  // @ManyToOne((type) => Textbook, {
-  //   onDelete: 'SET NULL',
-  // })
-  // textbook: Textbook;
+  //@ManyToOne((type) => User, (user) => user.userNumber)
+  //   @JoinColumn()
+  //   codeBookOwner: User;
+  //
 
-  @ManyToOne((type) => Textbook, {
-    onDelete: 'SET NULL',
-  })
-  textbook: Textbook;
-
-  // @ManyToOne((type) => Textbook, (textbook) => textbook.learningOutcomes)
-  // owner: Textbook;
-
-  // @ManyToOne((type) => Textbook, { eager: true })
-  // @JoinColumn()
-  // textbook: Textbook;
+  @ManyToOne((type) => Textbook, (textbook) => textbook.txtbCode)
+  @JoinColumn()
+  txtBCodeOutcome: Textbook;
 }

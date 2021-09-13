@@ -1,9 +1,11 @@
 //WHERE THE COLUMNS GO
 import {
   Column,
+  JoinColumn,
   ManyToMany,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
@@ -24,26 +26,14 @@ export class Textbook {
 
   @OneToMany(
     (type) => LearningOutcome,
-    (learningOutcome) => learningOutcome.textbook,
+    (learningOutcome) => learningOutcome.txtBCodeOutcome,
   )
   learningOutcomes: LearningOutcome[];
 
   @OneToMany((type) => Chapter, (chapter) => chapter.textbook)
   chapters: Chapter[];
 
-  @ManyToMany((type) => User)
-  users: User[];
-
-  // @ManyToMany((type) => User, (user) => user.textbooks)
-  // users: User[];
-
-  // @OneToMany(
-  //   (type) => LearningOutcome,
-  //   (learningOutcome) => learningOutcome.owner,
-  // )
-  // learningOutcomes: LearningOutcome[];
-
-  // @OneToMany((type) => LearningOutcome, { eager: true })
-  // @JoinColumn()
-  // learningOutcomes: LearningOutcome[];
+  @ManyToOne((type) => User, (user) => user.userNumber)
+  @JoinColumn()
+  codeBookOwner: User;
 }
