@@ -12,8 +12,8 @@ export class Resource {
   @Column()
   resourceName: string;
 
-  //Encode resource item to store it as a string
-  @Column()
+  //Encoded resource content to store it as a string
+  @Column('text')
   resourceContent: string;
 
   // @ManyToMany((type) => Resource)
