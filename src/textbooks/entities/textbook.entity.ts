@@ -24,6 +24,9 @@ export class Textbook {
   @Column()
   txtbPublishedStatus: string;
 
+  @Column('text', { nullable: true })
+  txtbCoverImage: string;
+
   @OneToMany(
     (type) => LearningOutcome,
     (learningOutcome) => learningOutcome.txtBCodeOutcome,

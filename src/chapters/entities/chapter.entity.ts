@@ -26,15 +26,6 @@ export class Chapter {
   })
   textbook: Textbook;
 
-  // @ManyToOne(() => Textbook, (textbook) => textbook.chapters, {
-  //   onDelete: 'SET NULL',
-  // })
-  // textbook: Textbook;
-
-  //@JoinTable() -> a chapter can own resources
-  // @ManyToMany(() => Resource, (resource) => resource.chapters)
-  // @JoinTable()
-  // resources: Resource[];
   @ManyToMany((type) => Resource)
   @JoinColumn()
   resources: Resource[];
