@@ -16,6 +16,7 @@ import { Chapter } from './chapters/entities/chapter.entity';
 import { LearningOutcome } from './learning-outcomes/entities/learning-outcome.entity';
 import { Resource } from './resources/entities/resource.entity';
 import { Textbook } from './textbooks/entities/textbook.entity';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { Textbook } from './textbooks/entities/textbook.entity';
     ResourcesModule,
     AuthModule,
     LearningOutcomesModule,
+    CommentsModule,
   ],
   controllers: [AppController, AuthController],
   providers: [AppService, AuthService],
